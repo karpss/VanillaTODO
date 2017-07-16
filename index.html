@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vanilla TODOList</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
+<body onload="">
+<div class="container">
+    <div class="jumbotron">
+        <h3>Add New Task: </h3>
+        <form id="taskInput">
+            <div class="form-group">
+                <label for="taskDesc">Task Description</label>
+                <input type="text" class="form-control" id="taskDesc" placeholder="Describe the task ...">
+            </div>
+            <div class="form-group">
+                <label for="taskUrgency">Urgency</label>
+                <select id="taskUrgency" class="form-control">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="taskHandler">Task Handler</label>
+                <input type="text" class="form-control" id="taskHandler" placeholder="Handler Name ...">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <div class="col-lg-12">
+        <div id="taskList">
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+</div>
+<script src="http://chancejs.com/chance.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="todo.js"></script>
+
 
 </body>
 </html>
