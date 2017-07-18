@@ -16,7 +16,28 @@ function saveTask(e) {
         urgency:taskUrgency,
         handler:taskHandler,
         status:taskStatus
+    };
+    //Check and Insert into local storage
+    if(localStorage.getItem('tasks') == null){
+        //Initialise empty array
+        var tasks = [];
+        //Push into array
+        tasks.push(task);
+        //set issue
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    }else{
+        var tasks = JSON.parse(localStorage.getItem('tasks'));
+        tasks.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
+    //reset input elements
+    document.getElementById('taskInput').reset();
+    //new elements inserted into local storage, we need to call
+    //getTasks() so the list can be regenerated
+    getTasks();
+    //prevent form from submitting
+    e.preventDefault();
 
 
 }
@@ -36,11 +57,11 @@ function getTasks() {
 
         // html for generated output
         taskList.innerHTML += '<div class="well">' +
-            '<h6>Issue ID: ' + id + '</h6>' +
+            '<h6>Task ID: ' + id + '</h6>' +
             '<p><span class="label label-info">' + status + '</span></p>' +
             '<h3>' + desc + '</h3>' +
             '<p><span class="glyphicon glyphicon-time"></span> ' + urgency + '</p>' +
-            '<p><span class="glyphicon glyphicon-user"></span> ' + taskHandler + '</p>' +
+            '<p><span class="glyphicon glyphicon-user"></span> ' + handler + '</p>' +
             '<a href="#" onclick="setStatusClosed(\'' + id + '\')" class="btn btn-warning">Close</a> ' +
             '<a href="#" onclick="deleteIssue(\'' + id + '\')" class="btn btn-danger">Delete</a>' +
             '</div>';
