@@ -55,6 +55,17 @@ function setClosedStatus(id) {
     getTasks();
 
 }
+//Function to delete tasks
+function deleteTask(id) {
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    for (var i = 0; i < tasks.length; i++){
+        if(tasks[i].id == id){
+            tasks.splice(i,1);
+        }
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    getTasks();
+}
 //Get tasks from local storage
 function getTasks() {
     //parse the items called from the local storage
@@ -77,7 +88,7 @@ function getTasks() {
             '<p><span class="glyphicon glyphicon-time"></span> ' + urgency + '</p>' +
             '<p><span class="glyphicon glyphicon-user"></span> ' + handler + '</p>' +
             '<a href="#" onclick="setClosedStatus(\'' + id + '\')" class="btn btn-warning">Close</a> ' +
-            '<a href="#" onclick="deleteIssue(\'' + id + '\')" class="btn btn-danger">Delete</a>' +
+            '<a href="#" onclick="deleteTask(\'' + id + '\')" class="btn btn-danger">Delete</a>' +
             '</div>';
     }
 }
