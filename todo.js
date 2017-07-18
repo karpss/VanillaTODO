@@ -11,14 +11,14 @@ function saveTask(e) {
 
     //New issue object
     var task = {
-        id:taskId,
-        description:taskDesc,
-        urgency:taskUrgency,
-        handler:taskHandler,
-        status:taskStatus
+        id: taskId,
+        description: taskDesc,
+        urgency: taskUrgency,
+        handler: taskHandler,
+        status: taskStatus
     };
     //Check and Insert into local storage
-    if(localStorage.getItem('tasks') == null){
+    if (localStorage.getItem('tasks') == null) {
         //Initialise empty array
         var tasks = [];
         //Push into array
@@ -26,7 +26,7 @@ function saveTask(e) {
         //set issue
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    }else{
+    } else {
         var tasks = JSON.parse(localStorage.getItem('tasks'));
         tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -39,6 +39,20 @@ function saveTask(e) {
     //prevent form from submitting
     e.preventDefault();
 
+
+}
+//Close Status Function
+function setClosedStatus(id) {
+    //retrieve from local storage
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    //Iterate over the array to find if there's a match in order to change status
+    for(var i = 0; i < tasks.length; i++){
+        if(tasks[i].id == id){
+            tasks[i].status = 'Closed'
+        }
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    getTasks();
 
 }
 //Get tasks from local storage
@@ -62,7 +76,7 @@ function getTasks() {
             '<h3>' + desc + '</h3>' +
             '<p><span class="glyphicon glyphicon-time"></span> ' + urgency + '</p>' +
             '<p><span class="glyphicon glyphicon-user"></span> ' + handler + '</p>' +
-            '<a href="#" onclick="setStatusClosed(\'' + id + '\')" class="btn btn-warning">Close</a> ' +
+            '<a href="#" onclick="setClosedStatus(\'' + id + '\')" class="btn btn-warning">Close</a> ' +
             '<a href="#" onclick="deleteIssue(\'' + id + '\')" class="btn btn-danger">Delete</a>' +
             '</div>';
     }
