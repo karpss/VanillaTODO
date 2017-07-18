@@ -9,6 +9,15 @@ function saveTask(e) {
     var taskId = chance.guid();
     var taskStatus = 'Open';
 
+    //New issue object
+    var task = {
+        id:taskId,
+        description:taskDesc,
+        urgency:taskUrgency,
+        handler:taskHandler,
+        status:taskStatus
+    }
+
 
 }
 //Get tasks from local storage
@@ -22,8 +31,8 @@ function getTasks() {
         var id = tasks[i].id;
         var desc = tasks[i].description;
         var urgency = tasks[i].urgency;
-        var taskHandler = tasks[i].taskHandler;
-        var status = tasks[i].tasks;
+        var handler = tasks[i].handler;
+        var status = tasks[i].status;
 
         // html for generated output
         taskList.innerHTML += '<div class="well">' +
