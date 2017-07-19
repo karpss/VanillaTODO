@@ -66,6 +66,10 @@ function deleteTask(id) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     getTasks();
 }
+function editTask(id) {
+
+
+}
 //Get tasks from local storage
 function getTasks() {
     //parse the items called from the local storage
@@ -88,7 +92,8 @@ function getTasks() {
             '<p><span class="glyphicon glyphicon-time"></span> ' + urgency + '</p>' +
             '<p><span class="glyphicon glyphicon-user"></span> ' + handler + '</p>' +
             '<a href="#" onclick="setClosedStatus(\'' + id + '\')" class="btn btn-warning">Close</a> ' +
-            '<a href="#" onclick="deleteTask(\'' + id + '\')" class="btn btn-danger">Delete</a>' +
+            '<a href="#" onclick="deleteTask(\'' + id + '\')" class="btn btn-danger">Delete</a> ' +
+            '<a href="#" onclick="editTask(\'' + id + '\')" class="btn btn-primary">Edit</a>' +
             '</div>';
     }
 }
