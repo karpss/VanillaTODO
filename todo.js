@@ -2,15 +2,15 @@
 document.getElementById('taskInput').addEventListener('submit', saveTask);
 //Define and assign variables and user input values
 function saveTask(e) {
-    var taskDesc = document.getElementById('taskDesc').value;
-    var taskUrgency = document.getElementById('taskUrgency').value;
-    var taskHandler = document.getElementById('taskHandler').value;
+    let taskDesc = document.getElementById('taskDesc').value;
+    let taskUrgency = document.getElementById('taskUrgency').value;
+    let taskHandler = document.getElementById('taskHandler').value;
     //Task ID generated through chance.js
-    var taskId = chance.guid();
-    var taskStatus = 'Open';
+    let taskId = chance.guid();
+    let taskStatus = 'Open';
 
     //New issue object
-    var task = {
+    let task = {
         id: taskId,
         description: taskDesc,
         urgency: taskUrgency,
@@ -18,16 +18,16 @@ function saveTask(e) {
         status: taskStatus
     };
     //Check and Insert into local storage
-    if (localStorage.getItem('tasks') == null) {
+    if (localStorage.getItem('tasks') === null) {
         //Initialise empty array
-        var tasks = [];
+        let tasks = [];
         //Push into array
-        tasks.push(task);
+     tasks.push(task);
         //set issue
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
     } else {
-        var tasks = JSON.parse(localStorage.getItem('tasks'));
+        let tasks = JSON.parse(localStorage.getItem('tasks'));
         tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
@@ -44,10 +44,10 @@ function saveTask(e) {
 //Close Status Function
 function setClosedStatus(id) {
     //retrieve from local storage
-    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
     //Iterate over the array to find if there's a match in order to change status
-    for(var i = 0; i < tasks.length; i++){
-        if(tasks[i].id == id){
+    for(let i = 0; i < tasks.length; i++){
+        if(tasks[i].id === id){
             tasks[i].status = 'Closed'
         }
     }
@@ -57,9 +57,9 @@ function setClosedStatus(id) {
 }
 //Function to delete tasks
 function deleteTask(id) {
-    var tasks = JSON.parse(localStorage.getItem('tasks'));
-    for (var i = 0; i < tasks.length; i++){
-        if(tasks[i].id == id){
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    for (let i = 0; i < tasks.length; i++){
+        if(tasks[i].id === id){
             tasks.splice(i,1);
         }
     }
@@ -69,16 +69,16 @@ function deleteTask(id) {
 //Get tasks from local storage
 function getTasks() {
     //parse the items called from the local storage
-    var tasks = JSON.parse(localStorage.getItem('tasks'));
-    var taskList = document.getElementById('taskList');
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
 //loop to iterate over the task items
-    for (var i = 0; i < tasks.length; i++) {
-        var id = tasks[i].id;
-        var desc = tasks[i].description;
-        var urgency = tasks[i].urgency;
-        var handler = tasks[i].handler;
-        var status = tasks[i].status;
+    for (let i = 0; i < tasks.length; i++) {
+        let id = tasks[i].id;
+        let desc = tasks[i].description;
+        let urgency = tasks[i].urgency;
+        let handler = tasks[i].handler;
+        let status = tasks[i].status;
 
         // html for generated output
         taskList.innerHTML += '<div class="well">' +
